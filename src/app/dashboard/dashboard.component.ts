@@ -1,3 +1,5 @@
+import { TokenService } from './../services/token.service';
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
+  constructor(private tokenService: TokenService,
+              private router: Router) { }
 
   ngOnInit() {
+  }
+
+  logout() {
+    this.tokenService.remove();
+    this.tokenService.token = null;
+    this.router.navigate(['/login']);
   }
 
 }

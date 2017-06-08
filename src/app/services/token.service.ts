@@ -15,4 +15,8 @@ export class TokenService {
   get token() {
     return this.localStorage.getObject(TOKEN_KEY);
   }
+
+  remove() {
+    this.localStorage.remove(TOKEN_KEY);
+  }
 }

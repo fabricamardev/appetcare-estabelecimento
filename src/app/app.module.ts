@@ -1,3 +1,4 @@
+import { LoginService } from './services/login.service';
 import { TokenService } from './services/token.service';
 import { LocalStorageService } from './services/local-storage.service';
 import { AuthService } from './services/auth.service';
@@ -15,6 +16,7 @@ import { ServicosNewComponent } from './servicos/servicos-new/servicos-new.compo
 import { ServicosListComponent } from './servicos/servicos-list/servicos-list.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { RegisterComponent } from './register/register.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,8 @@ import { RegisterComponent } from './register/register.component';
     ServicosNewComponent,
     ServicosListComponent,
     DashboardComponent,
-    RegisterComponent
+    RegisterComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,

@@ -1,3 +1,4 @@
+import { AuthService } from './../services/auth.service';
 import { Router } from '@angular/router';
 import { TokenService } from '../services/token.service';
 import { Component, OnInit } from '@angular/core';
@@ -23,7 +24,8 @@ export class LoginComponent implements OnInit {
 
   constructor(private http: Http,
               private tokenService: TokenService,
-              private router: Router) { }
+              private router: Router,
+              private auth: AuthService) { }
 
   ngOnInit() {
   }
@@ -32,7 +34,11 @@ export class LoginComponent implements OnInit {
     this.http
         .post('http://localhost:8000/oauth/token', this.user)
         .toPromise()
-        .then(response => this.tokenService.token = response.json())
+        .then(response => {
+            this.auth.check = true;
+            this.tokenService.token = response.json();
+            this.router.navigate(['/dashboard']);
+        })
         .catch((error: any) => {
             if (error.status === 500) {
                 console.log(error.status);
@@ -44,8 +50,6 @@ export class LoginComponent implements OnInit {
                 console.log(error.status);
             }
         });
-
-    this.router.navigate(['/dashboard']);
   }
 
   goToRegister() {

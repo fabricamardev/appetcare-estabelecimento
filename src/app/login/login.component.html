@@ -7,7 +7,7 @@
             <div class="card card-signup">
               <form class="form" (submit)="login()">
                 <div class="header header-primary text-center">
-                  <h3><i class="material-icons">home</i> Estabelecimento</h3>
+                  <h3><i class="material-icons">store</i> Estabelecimento</h3>
                   <hr>
                   <h4>Faça seu login com</h4>
                   <div class="social-line">
@@ -28,14 +28,14 @@
                     <span class="input-group-addon">
 											<i class="material-icons">email</i>
 										</span>
-                    <input type="text" class="form-control" placeholder="Email..." name="username" [(ngModel)]="user.username">
+                    <input required type="text" class="form-control" placeholder="Email..." name="username" [(ngModel)]="user.username">
                   </div>
 
                   <div class="input-group">
                     <span class="input-group-addon">
 											<i class="material-icons">lock_outline</i>
 										</span>
-                    <input type="password" placeholder="Senha..." class="form-control" name="password" [(ngModel)]="user.password" />
+                    <input required type="password" placeholder="Senha..." class="form-control" name="password" [(ngModel)]="user.password" />
                   </div>
 
                   <!-- If you want to add a checkbox to this form, uncomment this code

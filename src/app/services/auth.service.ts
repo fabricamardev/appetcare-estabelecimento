@@ -5,8 +5,13 @@ import { Injectable } from '@angular/core';
 export class AuthService {
 
   public check: Boolean = false;
+
   constructor(private tokenService: TokenService) {
     this.check = this.tokenService.token ? true : false;
   }
 
+  logout() {
+    this.tokenService.remove();
+    this.tokenService.token = null;
+  }
 }
