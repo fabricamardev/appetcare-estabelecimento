@@ -1,3 +1,4 @@
+import { AuthGuardRouterService } from './services/auth-guard-router.service';
 import { LocalizacaoComponent } from './localizacao/localizacao.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
@@ -24,23 +25,28 @@ const appRoutes: Routes = [
     },
     {
         path: 'servicos/list',
-        component: ServicosListComponent
+        component: ServicosListComponent,
+        canActivate: [AuthGuardRouterService]
     },
     {
         path: 'servicos/new',
-        component: ServicosNewComponent
+        component: ServicosNewComponent,
+        canActivate: [AuthGuardRouterService]
     },
     {
         path: 'perfil',
-        component: PerfilComponent
+        component: PerfilComponent,
+        canActivate: [AuthGuardRouterService]
     },
     {
         path: 'localizacao',
-        component: LocalizacaoComponent
+        component: LocalizacaoComponent,
+        canActivate: [AuthGuardRouterService]
     },
     {
         path: 'dashboard',
-        component: DashboardComponent
+        component: DashboardComponent,
+        canActivate: [AuthGuardRouterService]
     }
 ];
 

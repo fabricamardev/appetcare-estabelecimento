@@ -1,3 +1,5 @@
+import { DefaultRequestOptionsService } from './services/default-request-options.service';
+import { AuthGuardRouterService } from './services/auth-guard-router.service';
 import { AppComponent } from './app.component';
 import { routing } from './app.routing';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -19,6 +21,7 @@ import { HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { CurrencyMaskModule } from 'ng2-currency-mask';
 import { GMapModule } from 'primeng/primeng';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,7 +46,9 @@ import { GMapModule } from 'primeng/primeng';
   providers: [
     LocalStorageService,
     TokenService,
-    AuthService
+    AuthService,
+    AuthGuardRouterService,
+    DefaultRequestOptionsService
   ],
   bootstrap: [AppComponent]
 })

@@ -22,6 +22,7 @@ export class LoginComponent implements OnInit {
         password: '',
         scope: ''
     };
+    redirectAfterLogin = ['/dashboard'];
 
     constructor(private http: Http,
         private tokenService: TokenService,
@@ -38,7 +39,7 @@ export class LoginComponent implements OnInit {
             .then(response => {
                 this.auth.check = true;
                 this.tokenService.token = response.json();
-                this.router.navigate(['/dashboard']);
+                this.router.navigate(this.redirectAfterLogin);
             })
             .catch((error: any) => {
                 if (error.status === 500) {
