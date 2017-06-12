@@ -5,7 +5,10 @@ import { Component, OnInit } from '@angular/core';
 import { Servico } from '../servico';
 import 'rxjs/add/operator/toPromise';
 
+declare var swal: any;
+
 @Component({
+  moduleId: module.id,
   selector: 'app-servicos-list',
   templateUrl: './servicos-list.component.html',
   styleUrls: ['./servicos-list.component.css']
@@ -15,8 +18,8 @@ export class ServicosListComponent implements OnInit {
   servicos: Array<Servico> = [];
 
   constructor(private http: Http,
-              private tokenService: TokenService,
-              private auth: AuthService) {}
+    private tokenService: TokenService,
+    private auth: AuthService) { }
 
   ngOnInit() {
     this.getServicos();
@@ -28,9 +31,27 @@ export class ServicosListComponent implements OnInit {
     requestOptions.headers.set('Authorization', `Bearer ${this.tokenService.token['access_token']}`);
     requestOptions.headers.set('Content-Type', 'application/json');
     this.http
-        .get('http://localhost:8000/api/v1/especies', requestOptions)
-        .toPromise()
-        .then(response => this.servicos = response.json().data);
+      .get('http://localhost:8000/api/v1/especies', requestOptions)
+      .toPromise()
+      .then(response => this.servicos = response.json().data);
   }
 
+  delete() {
+    swal({
+      title: 'Deseja realmente remover este registro?',
+      text: 'Esta ação é irreverssível',
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sim',
+      cancelButtonText: 'Não'
+    }).then(function () {
+      swal(
+        'Excuído!',
+        'O registro foi removido com sucesso',
+        'success'
+      )
+    }).catch(swal.noop);
+  }
 }

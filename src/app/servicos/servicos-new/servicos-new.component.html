@@ -1,3 +1,53 @@
-<p>
-  servicos-new works!
-</p>
+<app-sidebar></app-sidebar>
+
+<div class="main-panel">
+
+  <app-nav-bar></app-nav-bar>
+
+  <div class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+          <div class="card">
+            <div class="card-header" data-background-color="green">
+              <h4 class="title">Novo Serviço</h4>
+              <p class="category">Registre um novo serviço para o seu estabelecimento</p>
+            </div>
+            <div class="card-content">
+              <form (submit)="salvar()">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group label-floating">
+                      <label class="control-label">Nome</label>
+                      <input type="text" name="nome" class="form-control" [(ngModel)]="servico.nome">
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group label-floating">
+                      <label class="control-label">Valor</label>
+                      <input type="text" name="valor" class="form-control" currencyMask [(ngModel)]="servico.valor" [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <div class="form-group label-floating">
+                        <label class="control-label"> Descrição</label>
+                        <textarea class="form-control" name="descricao" rows="5" [(ngModel)]="servico.descricao"></textarea>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <button type="submit" class="btn btn-success pull-right"><i class="material-icons">add</i> Salvar</button>
+                <div class="clearfix"></div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

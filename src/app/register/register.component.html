@@ -1,5 +1,5 @@
 <div class="signup-page">
-  <div class="wrapper" style="margin-top: -4px">
+  <div class="wrapper">
     <div class="header header-filter" style="background-image: url('../assets/img/fundo-login.jpg'); background-size: cover; background-position: top center;">
       <div class="container">
         <div class="row">
@@ -12,25 +12,41 @@
                   <h4>Registre-se</h4>
                 </div>
                 <div class="content">
-                  <div class="input-group">
-                    <span class="input-group-addon">
-											<i class="material-icons">home</i>
-										</span>
-                    <input required type="text" class="form-control" placeholder="Nome..." name="name" [(ngModel)]="user.name">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="input-group">
+                        <span class="input-group-addon">
+											    <i class="material-icons">home</i>
+										    </span>
+                        <div class="form-group">
+                          <input required type="text" class="form-control" placeholder="Nome..." name="name" [(ngModel)]="user.name">
+                        </div>
+                      </div>
+                    </div>
                   </div>
-
-                  <div class="input-group">
-                    <span class="input-group-addon">
-											<i class="material-icons">email</i>
-										</span>
-                    <input required type="text" class="form-control" placeholder="Email..." name="email" [(ngModel)]="user.email">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="input-group">
+                        <span class="input-group-addon">
+											    <i class="material-icons">email</i>
+										    </span>
+                        <div class="form-group">
+                          <input type="text" class="form-control" placeholder="Email..." name="email" [(ngModel)]="user.email">
+                        </div>
+                      </div>
+                    </div>
                   </div>
-
-                  <div class="input-group">
-                    <span class="input-group-addon">
-											<i class="material-icons">lock_outline</i>
-										</span>
-                    <input required type="password" placeholder="Senha..." class="form-control" name="password" [(ngModel)]="user.password" />
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="input-group">
+                        <span class="input-group-addon">
+											    <i class="material-icons">lock_outline</i>
+										    </span>
+                        <div class="form-group">
+                          <input type="password" class="form-control" placeholder="Senha..." name="password" [(ngModel)]="user.password" />
+                        </div>
+                      </div>
+                    </div>
                   </div>
 
                   <!-- If you want to add a checkbox to this form, uncomment this code
@@ -43,7 +59,8 @@
 									</div> -->
                 </div>
                 <div class="footer text-center">
-                  <button class="btn btn-simple btn-primary btn-lg" type="submit">Registrar</button>
+                  <input class="btn btn-simple btn-primary btn-lg" value="Voltar" type="button" (click)="goToLogin()"/>
+                  <button class="btn btn-primary" type="submit">Registrar</button>
                 </div>
               </form>
             </div>

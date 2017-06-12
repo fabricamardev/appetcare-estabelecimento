@@ -1,5 +1,5 @@
 <div class="signup-page">
-  <div class="wrapper" style="margin-top: -4px">
+  <div class="wrapper">
     <div class="header header-filter" style="background-image: url('../assets/img/fundo-login.jpg'); background-size: cover; background-position: top center;">
       <div class="container">
         <div class="row">
@@ -24,18 +24,29 @@
                 </div>
                 <p class="text-divider">Ou</p>
                 <div class="content">
-                  <div class="input-group">
-                    <span class="input-group-addon">
-											<i class="material-icons">email</i>
-										</span>
-                    <input required type="text" class="form-control" placeholder="Email..." name="username" [(ngModel)]="user.username">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="input-group">
+                        <span class="input-group-addon">
+											    <i class="material-icons">email</i>
+										    </span>
+                        <div class="form-group">
+                          <input type="text" class="form-control" placeholder="Email..." name="username" [(ngModel)]="user.username">
+                        </div>
+                      </div>
+                    </div>
                   </div>
-
-                  <div class="input-group">
-                    <span class="input-group-addon">
-											<i class="material-icons">lock_outline</i>
-										</span>
-                    <input required type="password" placeholder="Senha..." class="form-control" name="password" [(ngModel)]="user.password" />
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="input-group">
+                        <span class="input-group-addon">
+											    <i class="material-icons">lock_outline</i>
+										    </span>
+                        <div class="form-group">
+                          <input type="password" class="form-control" placeholder="Senha..." name="password" [(ngModel)]="user.password" />
+                        </div>
+                      </div>
+                    </div>
                   </div>
 
                   <!-- If you want to add a checkbox to this form, uncomment this code
@@ -48,7 +59,7 @@
 									</div> -->
                 </div>
                 <div class="footer text-center">
-                  <input class="btn btn-simple btn-primary btn-lg" value="Registre-se" type="button" (click)="goToRegister()"/>
+                  <a class="btn btn-primary" routerLink="/register">Registre-se</a>
                   <button class="btn btn-simple btn-primary btn-lg" type="submit">Acessar</button>
                 </div>
               </form>
@@ -80,7 +91,7 @@
             </ul>
           </nav>
           <div class="copyright pull-right">
-            &copy; 2017            
+            &copy; 2017
             <a href="#" target="_blank"><img height="40px" width="105px" src="../assets/img/mardev.png" /></a>
           </div>
         </div>
