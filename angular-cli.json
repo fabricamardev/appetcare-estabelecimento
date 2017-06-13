@@ -18,9 +18,15 @@
     "prefix": "app",
     "styles": [
       "styles.css",
-      "../node_modules/primeng/resources/primeng.css"
+      "../node_modules/primeng/resources/primeng.min.css",
+      "../node_modules/primeng/resources/themes/omega/theme.css"
     ],
-    "scripts": [],
+    "scripts": [
+      "../node_modules/moment/min/moment.min.js",
+      "../node_modules/jquery/dist/jquery.min.js",
+      "../node_modules/fullcalendar/dist/fullcalendar.js",
+      "../node_modules/fullcalendar/dist/locale/pt-br.js"
+    ],
     "environments": {
       "source": "environments/environment.ts",
       "dev": "environments/environment.ts",

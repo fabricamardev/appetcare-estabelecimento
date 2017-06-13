@@ -8,6 +8,7 @@ import { ServicosNewComponent } from './servicos/servicos-new/servicos-new.compo
 import { ModuleWithProviders } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PerfilComponent } from './perfil/perfil.component';
+import { AtendimentosAgendadosComponent } from './atendimentos-agendados/atendimentos-agendados.component';
 
 const appRoutes: Routes = [
     {
@@ -41,6 +42,11 @@ const appRoutes: Routes = [
     {
         path: 'localizacao',
         component: LocalizacaoComponent,
+        canActivate: [AuthGuardRouterService]
+    },
+    {
+        path: 'agendamentos',
+        component: AtendimentosAgendadosComponent,
         canActivate: [AuthGuardRouterService]
     },
     {

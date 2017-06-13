@@ -16,19 +16,16 @@ export class LocalizacaoComponent implements OnInit {
   overlays: any[] = [];
   selectedPosition: any;
   dialogVisible: boolean;
-  latitude: number;
-  longitude: number;
-
   estabelecimento: Estabelecimento;
 
   ngOnInit() {
     this.getLocation();
 
-    this.latitude = parseFloat(localStorage.getItem('latitude'));
-    this.longitude = parseFloat(localStorage.getItem('longitude'));
+    const latitude = parseFloat(localStorage.getItem('latitude'));
+    const longitude = parseFloat(localStorage.getItem('longitude'));
 
     this.options = {
-      center: { lat: this.latitude, lng: this.longitude },
+      center: { lat: latitude, lng: longitude },
       zoom: 12
     };
 
@@ -55,9 +52,7 @@ export class LocalizacaoComponent implements OnInit {
         'A localização foi definida com sucesso',
         'success'
       );
-    }).catch(() => {
-      this.clearMarkers();
-    });
+    }).catch(swal.noop);
   }
 
   addMarker() {
@@ -81,6 +76,7 @@ export class LocalizacaoComponent implements OnInit {
       alert('Geolocation is not supported by this browser.');
     }
   }
+
   showPosition(position) {
     localStorage.setItem('latitude', position.coords.latitude);
     localStorage.setItem('longitude', position.coords.longitude);
