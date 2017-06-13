@@ -29,7 +29,12 @@ export class ServicosListComponent implements OnInit {
     this.http
       .get('http://localhost:8000/api/v1/especies', this.requestOptions.merge(new RequestOptions()))
       .toPromise()
-      .then(response => this.servicos = response.json().data);
+      .then(response => this.servicos = response.json().data)
+      .catch((error: any) => {
+        if (error.status === 401) {
+          this.auth.refresh();
+        }
+      });
   }
 
   delete() {

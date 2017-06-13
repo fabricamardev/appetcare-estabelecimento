@@ -1,10 +1,5 @@
 import { AuthService } from './../services/auth.service';
-import { Router } from '@angular/router';
-import { TokenService } from '../services/token.service';
 import { Component, OnInit } from '@angular/core';
-import { Http } from '@angular/http';
-
-import 'rxjs/add/operator/toPromise';
 
 @Component({
     moduleId: module.id,
@@ -24,33 +19,12 @@ export class LoginComponent implements OnInit {
     };
     redirectAfterLogin = ['/dashboard'];
 
-    constructor(private http: Http,
-        private tokenService: TokenService,
-        private router: Router,
-        private auth: AuthService) { }
+    constructor(private auth: AuthService) { }
 
     ngOnInit() {
     }
 
     login() {
-        this.http
-            .post('http://localhost:8000/oauth/token', this.user)
-            .toPromise()
-            .then(response => {
-                this.auth.check = true;
-                this.tokenService.token = response.json();
-                this.router.navigate(this.redirectAfterLogin);
-            })
-            .catch((error: any) => {
-                if (error.status === 500) {
-                    console.log(error.status);
-                } else if (error.status === 400) {
-                    console.log(error.status);
-                } else if (error.status === 409) {
-                    console.log(error.status);
-                } else if (error.status === 406) {
-                    console.log(error.status);
-                }
-            });
+        this.auth.login(this.redirectAfterLogin, this.user);
     }
 }

@@ -1,3 +1,4 @@
+import { Http } from '@angular/http';
 import { Estabelecimento } from '../perfil/estabelecimento';
 import { Component, OnInit } from '@angular/core';
 
@@ -17,9 +18,16 @@ export class LocalizacaoComponent implements OnInit {
   selectedPosition: any;
   dialogVisible: boolean;
   estabelecimento: Estabelecimento;
+  enderecoGMaps: any;
+
+  constructor(private http: Http) { }
 
   ngOnInit() {
-    this.getLocation();
+    if (this.estabelecimento.endereco) {
+      this.getLocation();
+    } else {
+      this.getEstabelecimentoLocation();
+    }
 
     const latitude = parseFloat(localStorage.getItem('latitude'));
     const longitude = parseFloat(localStorage.getItem('longitude'));
@@ -35,6 +43,8 @@ export class LocalizacaoComponent implements OnInit {
 
   handleMapClick(event) {
     this.selectedPosition = event.latLng;
+    // REPRODUZIR O FORMATO DE event.latLng NA LINHA 103 para a localização do estabelecimento
+    console.log(event.latLng);
 
     swal({
       title: 'Deseja vincular esta localização ao seu estabelecimento?',
@@ -46,7 +56,16 @@ export class LocalizacaoComponent implements OnInit {
       confirmButtonText: 'Sim',
       cancelButtonText: 'Não'
     }).then(() => {
+      this.http
+        .get('http://maps.googleapis.com/maps/api/geocode/json?latlng=0.04113435,-51.05139613')
+        .toPromise()
+        .then(response => {
+          console.log(response.json().results[0].formatted_address);
+          this.estabelecimento.endereco = response.json().results[0].formatted_address;
+        })
+        .catch(swal.noop);
       this.addMarker();
+
       swal(
         'Parabéns!',
         'A localização foi definida com sucesso',
@@ -77,8 +96,19 @@ export class LocalizacaoComponent implements OnInit {
     }
   }
 
+  getEstabelecimentoLocation() {
+    localStorage.setItem('latitude', this.estabelecimento.latitude.toString());
+    localStorage.setItem('longitude', this.estabelecimento.longitude.toString());
+
+    this.selectedPosition = {
+
+    };
+
+    this.addMarker();
+  }
+
   showPosition(position) {
-    localStorage.setItem('latitude', position.coords.latitude);
-    localStorage.setItem('longitude', position.coords.longitude);
+    localStorage.setItem('latitude', position.coords.latitude.toString());
+    localStorage.setItem('longitude', position.coords.longitude.toString());
   }
 }
