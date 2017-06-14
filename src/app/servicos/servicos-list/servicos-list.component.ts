@@ -3,6 +3,7 @@ import { AuthService } from '../../services/auth.service';
 import { Headers, Http, RequestOptions } from '@angular/http';
 import { Component, OnInit } from '@angular/core';
 import { Servico } from '../servico';
+import { NotificationsService } from 'angular2-notifications';
 import 'rxjs/add/operator/toPromise';
 
 declare var swal: any;
@@ -16,10 +17,16 @@ declare var swal: any;
 export class ServicosListComponent implements OnInit {
 
   servicos: Array<Servico> = [];
+  public options = {
+    position: ['bottom', 'right'],
+    timeOut: 5000,
+    lastOnBottom: true
+  };
 
   constructor(private http: Http,
     private auth: AuthService,
-    private requestOptions: DefaultRequestOptionsService) { }
+    private requestOptions: DefaultRequestOptionsService,
+    private _notificationsService: NotificationsService) { }
 
   ngOnInit() {
     this.getServicos();
@@ -32,7 +39,8 @@ export class ServicosListComponent implements OnInit {
       .then(response => this.servicos = response.json().data)
       .catch((error: any) => {
         if (error.status === 401) {
-          this.auth.refresh();
+          this.auth.refreshToken();
+          this.getServicos();
         }
       });
   }
@@ -54,5 +62,17 @@ export class ServicosListComponent implements OnInit {
         'success'
       )
     }).catch(swal.noop);
+  }
+
+  edit() {
+    this._notificationsService.success(
+      'Some Title',
+      'Some Some ContentSome ContentSome ContentSome Content',
+      {
+        showProgressBar: true,
+        pauseOnHover: true,
+        clickToClose: true
+      }
+    );
   }
 }

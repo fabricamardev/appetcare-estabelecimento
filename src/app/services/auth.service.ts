@@ -33,9 +33,9 @@ export class AuthService {
       });
   }
 
-  refresh() {
+  refreshToken() {
     const parameters = {
-        grant_type: 'password',
+        grant_type: 'refresh_token',
         client_id: '1',
         client_secret: 'ptmalrhUcINWGl0HyMM0Ji6IG5xGC6F7SshLKrWF',
         refresh_token: ''
