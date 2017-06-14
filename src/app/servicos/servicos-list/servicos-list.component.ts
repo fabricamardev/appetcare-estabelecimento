@@ -1,3 +1,4 @@
+import { environment } from './../../../environments/environment';
 import { DefaultRequestOptionsService } from './../../services/default-request-options.service';
 import { AuthService } from '../../services/auth.service';
 import { Headers, Http, RequestOptions } from '@angular/http';
@@ -16,6 +17,7 @@ declare var swal: any;
 export class ServicosListComponent implements OnInit {
 
   servicos: Array<Servico> = [];
+  api_route: string = environment.api_version + environment.api_version + 'servicos';
 
   constructor(private http: Http,
     private auth: AuthService,
@@ -27,7 +29,7 @@ export class ServicosListComponent implements OnInit {
 
   getServicos() {
     this.http
-      .get('http://localhost:8000/api/v1/especies', this.requestOptions.merge(new RequestOptions()))
+      .get(this.api_route, this.requestOptions.merge(new RequestOptions()))
       .toPromise()
       .then(response => this.servicos = response.json().data)
       .catch((error: any) => {
