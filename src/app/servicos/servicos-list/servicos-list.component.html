@@ -5,6 +5,7 @@
   <app-nav-bar></app-nav-bar>
 
   <div class="content">
+    <simple-notifications [options]="options"></simple-notifications>
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-1"></div>
@@ -29,7 +30,7 @@
                     <td class="text-center">{{s.nome}}</td>
                     <td class="text-center">$36,738</td>
                     <td class="td-actions text-center">
-                      <button type="button" rel="tooltip" class="btn btn-success btn-round" data-original-title="Editar" title="Editar">
+                      <button type="button" rel="tooltip" class="btn btn-success btn-round" data-original-title="Editar" title="Editar" (click)="edit()">
                                                             <i class="material-icons">edit</i>
                                                         <div class="ripple-container"></div></button>
                       <button type="button" rel="tooltip" class="btn btn-danger btn-round" data-original-title="Excluir" title="Excluir" (click)="delete()">

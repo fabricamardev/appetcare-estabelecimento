@@ -23,6 +23,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { CurrencyMaskModule } from 'ng2-currency-mask';
 import { ScheduleModule } from 'primeng/primeng';
 import { GMapModule } from 'primeng/primeng';
+import { SimpleNotificationsModule } from 'angular2-notifications';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -40,6 +42,8 @@ import { GMapModule } from 'primeng/primeng';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
+    SimpleNotificationsModule.forRoot(),
     FormsModule,
     HttpModule,
     routing,

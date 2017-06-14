@@ -6,7 +6,7 @@ import { Http } from '@angular/http';
     moduleId: module.id,
     selector: 'app-register',
     templateUrl: './register.component.html',
-    styleUrls: ['./register.component.css']
+    styleUrls: ['../../assets/css/material-kit.css']
 })
 
 export class RegisterComponent implements OnInit {
