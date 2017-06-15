@@ -1,19 +1,23 @@
 import { Router } from '@angular/router';
 import { TokenService } from '../services/token.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { AuthService } from 'angular2-social-login';
 import { Http } from '@angular/http';
 import { Injectable } from '@angular/core';
 
 import 'rxjs/add/operator/toPromise';
 
 @Injectable()
-export class AuthService {
+export class AppetAuthService implements OnDestroy {
 
   public check: Boolean = false;
+  sub: any;
+  public socialUser;
 
   constructor(private tokenService: TokenService,
               private http: Http,
-              private router: Router) {
+              private router: Router,
+              public _auth: AuthService) {
     this.check = this.tokenService.token ? true : false;
   }
 
@@ -31,6 +35,25 @@ export class AuthService {
           console.log('Erro interno');
         }
       });
+  }
+
+  signIn(provider, redirectAfterLogin) {
+    this.sub = this._auth.login(provider).subscribe(
+      (data) => {
+        console.log(data); this.socialUser = data;
+        this.router.navigate(redirectAfterLogin);
+      }
+    );
+  }
+
+  logoutSocial() {
+    this._auth.logout().subscribe(
+      (data) => { console.log(data); this.socialUser = null; }
+    )
+  }
+
+  ngOnDestroy() {
+    this.sub.unsubscribe();
   }
 
   refreshToken() {

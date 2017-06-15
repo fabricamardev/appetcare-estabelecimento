@@ -1,5 +1,5 @@
 import { DefaultRequestOptionsService } from './../../services/default-request-options.service';
-import { AuthService } from '../../services/auth.service';
+import { AppetAuthService } from '../../services/appet-auth.service';
 import { Headers, Http, RequestOptions } from '@angular/http';
 import { Component, OnInit } from '@angular/core';
 import { Servico } from '../servico';
@@ -24,7 +24,7 @@ export class ServicosListComponent implements OnInit {
   };
 
   constructor(private http: Http,
-    private auth: AuthService,
+    private auth: AppetAuthService,
     private requestOptions: DefaultRequestOptionsService,
     private _notificationsService: NotificationsService) { }
 

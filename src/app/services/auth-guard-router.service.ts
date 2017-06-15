@@ -1,4 +1,4 @@
-import { AuthService } from './auth.service';
+import { AppetAuthService } from './appet-auth.service';
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, Router } from '@angular/router';
 import { Observable } from 'rxjs/Rx';
@@ -15,7 +15,7 @@ export class AuthGuardRouterService implements CanActivate {
     return false;
   }
 
-  constructor(private auth: AuthService,
+  constructor(private auth: AppetAuthService,
     private router: Router) { }
 
 }

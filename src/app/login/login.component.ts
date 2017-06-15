@@ -1,4 +1,4 @@
-import { AuthService } from './../services/auth.service';
+import { AppetAuthService } from './../services/appet-auth.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
     };
     redirectAfterLogin = ['/dashboard'];
 
-    constructor(private auth: AuthService) { }
+    constructor(private auth: AppetAuthService) { }
 
     ngOnInit() {
     }
@@ -27,4 +27,8 @@ export class LoginComponent implements OnInit {
     login() {
         this.auth.login(this.redirectAfterLogin, this.user);
     }
+
+    signIn(provider) {
+        this.auth.signIn(provider, this.redirectAfterLogin);
+  }
 }

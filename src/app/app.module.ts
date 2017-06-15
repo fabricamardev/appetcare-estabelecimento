@@ -8,7 +8,7 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { PerfilComponent } from './perfil/perfil.component';
 import { RegisterComponent } from './register/register.component';
 import { AuthGuardRouterService } from './services/auth-guard-router.service';
-import { AuthService } from './services/auth.service';
+import { AppetAuthService } from './services/appet-auth.service';
 import { DefaultRequestOptionsService } from './services/default-request-options.service';
 import { EventService } from './services/event.service';
 import { LocalStorageService } from './services/local-storage.service';
@@ -24,7 +24,19 @@ import { CurrencyMaskModule } from 'ng2-currency-mask';
 import { ScheduleModule } from 'primeng/primeng';
 import { GMapModule } from 'primeng/primeng';
 import { SimpleNotificationsModule } from 'angular2-notifications';
+import { Angular2SocialLoginModule } from 'angular2-social-login';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ImageCropperComponent } from 'ng2-img-cropper';
+
+let providers = {
+  'google': {
+    'clientId': '731078138311-3qrnda33cs8c0eb2msclhsk42c1vbvm2.apps.googleusercontent.com'
+  },
+  'facebook': {
+    'clientId': '224071121444035',
+    'apiVersion': 'v2.9'
+  }
+};
 
 @NgModule({
   declarations: [
@@ -39,6 +51,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     NavBarComponent,
     LocalizacaoComponent,
     AtendimentosAgendadosComponent,
+    ImageCropperComponent
   ],
   imports: [
     BrowserModule,
@@ -49,12 +62,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     routing,
     CurrencyMaskModule,
     GMapModule,
+    Angular2SocialLoginModule,
     ScheduleModule
   ],
   providers: [
     LocalStorageService,
     TokenService,
-    AuthService,
+    AppetAuthService,
     AuthGuardRouterService,
     DefaultRequestOptionsService,
     EventService
@@ -62,3 +76,5 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+Angular2SocialLoginModule.loadProvidersScripts(providers);
