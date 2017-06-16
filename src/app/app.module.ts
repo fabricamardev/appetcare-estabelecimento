@@ -7,12 +7,14 @@ import { LoginComponent } from './login/login.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { PerfilComponent } from './perfil/perfil.component';
 import { RegisterComponent } from './register/register.component';
-import { AuthGuardRouterService } from './services/auth-guard-router.service';
 import { AppetAuthService } from './services/appet-auth.service';
+import { AuthGuardRouterService } from './services/auth-guard-router.service';
 import { DefaultRequestOptionsService } from './services/default-request-options.service';
 import { EventService } from './services/event.service';
 import { LocalStorageService } from './services/local-storage.service';
 import { TokenService } from './services/token.service';
+import { ServicoService } from './servicos/servico.service';
+import { ServicosEditComponent } from './servicos/servicos-edit/servicos-edit.component';
 import { ServicosListComponent } from './servicos/servicos-list/servicos-list.component';
 import { ServicosNewComponent } from './servicos/servicos-new/servicos-new.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
@@ -51,7 +53,8 @@ let providers = {
     NavBarComponent,
     LocalizacaoComponent,
     AtendimentosAgendadosComponent,
-    ImageCropperComponent
+    ImageCropperComponent,
+    ServicosEditComponent
   ],
   imports: [
     BrowserModule,
@@ -71,7 +74,8 @@ let providers = {
     AppetAuthService,
     AuthGuardRouterService,
     DefaultRequestOptionsService,
-    EventService
+    EventService,
+    ServicoService
   ],
   bootstrap: [AppComponent]
 })

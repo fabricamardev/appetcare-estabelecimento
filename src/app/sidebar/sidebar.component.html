@@ -20,14 +20,22 @@
 
   <div class="sidebar-wrapper">
     <div class="user">
-      <div class="photo">
-        <img src="../assets/img/default-avatar.png">
+      <div class="photo" *ngIf="perfil.image; else default_image">
+        <img [src]=perfil.image>
       </div>
+      <ng-template #default_image>
+        <div class="photo">
+          <img src="../../assets/img/default-avatar.png">
+        </div>
+      </ng-template>
       <div class="info">
         <a data-toggle="collapse" href="#collapseExample" class="collapsed" aria-expanded="false">
-                            Estabelecimento
-                            <b class="caret"></b>
-                        </a>
+          <p *ngIf="perfil.email, else default_email">{{ perfil.email }}</p>
+          <ng-template #default_email>
+            Estabelecimento
+          </ng-template>
+          <b class="caret"></b>
+        </a>
         <div class="collapse" id="collapseExample" aria-expanded="false" style="height: 0px;">
           <ul class="nav">
             <li routerLinkActive="active">
@@ -75,12 +83,12 @@
 	                        <p>Icons</p>
 	                    </a>
         </li-->
-      <li routerLinkActive="active">
+      <!--li routerLinkActive="active">
         <a routerLink="/configurar/atendimentos">
 	                        <i class="material-icons text-gray">alarm</i>
 	                        <p>Configurar Atendimentos</p>
 	                    </a>
-      </li>
+      </li-->
       <li routerLinkActive="active">
         <a routerLink="/agendamentos">
 	                        <i class="material-icons text-gray">notifications</i>

@@ -5,6 +5,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ServicosListComponent } from './servicos/servicos-list/servicos-list.component';
 import { ServicosNewComponent } from './servicos/servicos-new/servicos-new.component';
+import { ServicosEditComponent } from './servicos/servicos-edit/servicos-edit.component';
 import { ModuleWithProviders } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PerfilComponent } from './perfil/perfil.component';
@@ -27,6 +28,11 @@ const appRoutes: Routes = [
     {
         path: 'servicos/list',
         component: ServicosListComponent,
+        canActivate: [AuthGuardRouterService]
+    },
+    {
+        path: 'servicos/edit',
+        component: ServicosEditComponent,
         canActivate: [AuthGuardRouterService]
     },
     {

@@ -21,6 +21,7 @@
                 <thead class="text-gray">
                   <th class="text-center">ID</th>
                   <th class="text-center">Nome</th>
+                  <th class="text-center">Descrição</th>
                   <th class="text-center">Valor</th>
                   <th class="text-center">Opções</th>
                 </thead>
@@ -28,12 +29,13 @@
                   <tr *ngFor="let s of servicos">
                     <td class="text-center">{{s.id}}</td>
                     <td class="text-center">{{s.nome}}</td>
-                    <td class="text-center">$36,738</td>
+                    <td class="text-center">{{s.descricao}}</td>
+                    <td class="text-center">R$ {{s.valor}}</td>
                     <td class="td-actions text-center">
-                      <button type="button" rel="tooltip" class="btn btn-success btn-round" data-original-title="Editar" title="Editar" (click)="edit()">
+                      <button type="button" rel="tooltip" class="btn btn-success btn-round" data-original-title="Editar" title="Editar" (click)="edit(s.id)">
                                                             <i class="material-icons">edit</i>
                                                         <div class="ripple-container"></div></button>
-                      <button type="button" rel="tooltip" class="btn btn-danger btn-round" data-original-title="Excluir" title="Excluir" (click)="delete()">
+                      <button type="button" rel="tooltip" class="btn btn-danger btn-round" data-original-title="Excluir" title="Excluir" (click)="delete(s.id)">
                                                             <i class="material-icons">close</i>
                                                         <div class="ripple-container"></div></button>										
                     </td>

@@ -1,6 +1,8 @@
 import { TokenService } from './../services/token.service';
+import { Estabelecimento } from '../perfil/estabelecimento';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { AppetAuthService } from './../services/appet-auth.service';
 
 @Component({
   moduleId: module.id,
@@ -10,16 +12,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavBarComponent implements OnInit {
 
-  constructor(private tokenService: TokenService,
-              private router: Router) { }
+  constructor(private router: Router,
+    private auth: AppetAuthService) { }
 
   ngOnInit() {
   }
 
 
   logout() {
-    this.tokenService.remove();
-    this.tokenService.token = null;
-    this.router.navigate(['/login']);
+    this.auth.logout().then(() => {
+      this.router.navigate(['login']);
+    });
   }
 }

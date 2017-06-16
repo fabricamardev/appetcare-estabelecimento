@@ -11,7 +11,7 @@ export class DefaultRequestOptionsService extends RequestOptions {
   }
 
   merge(options?: RequestOptionsArgs): RequestOptions {
-    let headers = options.headers || new Headers();
+    const headers = options.headers || new Headers();
     headers.set('Authorization', `Bearer ${this.tokenService.token['access_token']}`);
     headers.set('Content-Type', 'application/json');
     options.headers = headers;
