@@ -5,6 +5,7 @@ import { DefaultRequestOptionsService } from '../services/default-request-option
 import { AuthService } from 'angular2-social-login';
 import { Http, RequestOptions } from '@angular/http';
 import { LocalStorageService } from '../services/local-storage.service';
+import { SlimLoadingBarService } from 'ng2-slim-loading-bar';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -23,7 +24,8 @@ export class LoginComponent implements OnInit {
         password: '',
         scope: ''
     };
-    redirectAfterLogin = ['/dashboard'];
+
+    redirectAfterLogin = ['/horario-funcionamento/list'];
     public check: Boolean = false;
     public isSocial: Boolean = false;
     sub: any;
@@ -36,24 +38,33 @@ export class LoginComponent implements OnInit {
         private http: Http,
         public requestOptions: DefaultRequestOptionsService,
         private router: Router,
-        public localStorageService: LocalStorageService) { }
+        public localStorageService: LocalStorageService,
+        private slimLoadingBarService: SlimLoadingBarService) { }
 
     ngOnInit() {
     }
 
     login() {
-        this.auth.login(this.redirectAfterLogin, this.user);
+        this.slimLoadingBarService.start();
+        this.auth.login(this.redirectAfterLogin, this.user).then(() => {
+            this.slimLoadingBarService.complete();
+        }).catch(() => this.slimLoadingBarService.complete());
     }
 
     signIn(provider) {
-        this.auth.signIn(provider).then(() => {
-            this.http // email enviado ao oauth para obter token | three way authentication - implementar
+        this.slimLoadingBarService.start();
+        this.auth.signIn(provider).then((data) => {
+            console.log(data);
+            this.auth.logout();
+            this.slimLoadingBarService.complete();
+            /*this.http // email enviado ao oauth para obter token | three way authentication - implementar
                 .get(this.api_route + this.user.username, this.requestOptions.merge(new RequestOptions()))
                 .toPromise()
                 .then(estabelecimento => {
                     this.localStorageService.setObject('estabelecimento', estabelecimento.json().result[0]);
+                    this.slimLoadingBarService.complete();
                     this.router.navigate(['dashboard']);
-                });
+                });*/
         });
     }
 }

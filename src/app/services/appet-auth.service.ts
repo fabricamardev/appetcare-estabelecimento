@@ -32,26 +32,25 @@ export class AppetAuthService implements OnDestroy {
   }
 
   login(redirectAfterLogin, user) {
-    this.user = user;
-    this.http
-      .post(environment.oauth_url, this.user)
-      .toPromise()
-      .then(response => {
-        this.check = true;
-        this.tokenService.token = response.json();
-        this.http // email enviado ao oauth para obter token
-          .get(this.api_route + this.user.username, this.requestOptions.merge(new RequestOptions()))
-          .toPromise()
-          .then(estabelecimento => {
-            this.localStorageService.setObject('estabelecimento', estabelecimento.json().result[0]);
-            this.router.navigate(redirectAfterLogin);
-          });
-      })
-      .catch((error: any) => {
-        if (error.status === 500) {
-          console.log('Erro interno');
-        }
-      });
+    return new Promise((resolve, reject) => {
+      this.user = user;
+      this.http
+        .post(environment.oauth_url, this.user)
+        .toPromise()
+        .then(response => {
+          this.check = true;
+          this.tokenService.token = response.json();
+          this.http // email enviado ao oauth para obter token
+            .get(this.api_route + this.user.username, this.requestOptions.merge(new RequestOptions()))
+            .toPromise()
+            .then(estabelecimento => {
+              this.localStorageService.setObject('estabelecimento', estabelecimento.json().result[0]);
+              this.router.navigate(redirectAfterLogin);
+              resolve();
+            });
+        })
+        .catch(error => reject(error));
+    });
   }
 
   signIn(provider) {
@@ -78,7 +77,7 @@ export class AppetAuthService implements OnDestroy {
       grant_type: 'refresh_token',
       client_id: environment.client_id,
       client_secret: environment.client_secret,
-      refresh_token: ''
+      refresh_token: this.tokenService.token.refresh_token
     };
 
     this.http

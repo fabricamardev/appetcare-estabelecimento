@@ -1,0 +1,56 @@
+<app-sidebar></app-sidebar>
+
+<div class="main-panel">
+
+    <app-nav-bar></app-nav-bar>
+
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-header" data-background-color="green">
+                            <h4 class="title">Editar Serviço</h4>
+                            <p class="category">Edite um serviço do seu estabelecimento</p>
+                        </div>
+                        <div class="card-content">
+                            <form (submit)="editar()">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">Manhã - Início Ex: 8 (Somente números)</label>
+                                            <input type="text" name="de_manha" class="form-control" [(ngModel)]="horarioFuncionamento.de_manha">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">Manhã - Fim - Ex:12 (Somente números)</label>
+                                            <input type="text" name="ate_manha" class="form-control" [(ngModel)]="horarioFuncionamento.ate_manha" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">Tarde - Início - Ex:14 (Somente números)</label>
+                                            <input type="text" name="de_tarde" class="form-control" [(ngModel)]="horarioFuncionamento.de_tarde">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">Tarde - Fim -Ex:18 (Somente números)</label>
+                                            <input type="text" name="ate_tarde" class="form-control" [(ngModel)]="horarioFuncionamento.ate_tarde" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-success pull-right"><i class="material-icons">create</i> Editar</button>
+                                <div class="clearfix"></div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

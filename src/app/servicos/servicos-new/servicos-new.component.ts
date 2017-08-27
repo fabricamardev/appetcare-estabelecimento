@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { Servico } from '../servico';
 import { NotificationsService } from 'angular2-notifications';
 import { LocalStorageService } from '../../services/local-storage.service';
+import { SlimLoadingBarService } from 'ng2-slim-loading-bar';
 import 'rxjs/add/operator/toPromise';
 
 @Component({
@@ -25,7 +26,8 @@ export class ServicosNewComponent implements OnInit {
     private requestOptions: DefaultRequestOptionsService,
     private _notificationsService: NotificationsService,
     public localStorageService: LocalStorageService,
-    private router: Router) {
+    private router: Router,
+    private slimLoadingBarService: SlimLoadingBarService) {
   }
 
   ngOnInit() {

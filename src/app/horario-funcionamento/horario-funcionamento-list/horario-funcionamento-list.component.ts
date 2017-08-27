@@ -1,10 +1,10 @@
+import { HorarioFuncionamentoService } from '../horario-funcionamento.service';
 import { environment } from './../../../environments/environment';
 import { DefaultRequestOptionsService } from './../../services/default-request-options.service';
 import { AppetAuthService } from '../../services/appet-auth.service';
 import { Http, RequestOptions } from '@angular/http';
 import { Component, OnInit } from '@angular/core';
-import { Servico } from '../servico';
-import { ServicoService } from '../servico.service';
+import { HorarioFuncionamento } from '../horario-funcionamento';
 import { NotificationsService } from 'angular2-notifications';
 import { Router } from '@angular/router';
 import { Estabelecimento } from '../../perfil/estabelecimento';
@@ -16,19 +16,19 @@ declare var swal: any;
 
 @Component({
   moduleId: module.id,
-  selector: 'app-servicos-list',
-  templateUrl: './servicos-list.component.html',
-  styleUrls: ['./servicos-list.component.css']
+  selector: 'app-horario-funcionamento-list',
+  templateUrl: './horario-funcionamento-list.component.html',
+  styleUrls: ['./horario-funcionamento-list.component.css']
 })
 
-export class ServicosListComponent implements OnInit {
+export class HorarioFuncionamentoListComponent implements OnInit {
 
-  servicos: Array<Servico> = [];
-  servico: Servico = new Servico();
+  horariosDeFuncionamento: Array<HorarioFuncionamento> = [];
+  horarioFuncionamento: HorarioFuncionamento = new HorarioFuncionamento();
   estabelecimento: Estabelecimento;
 
-  api_route: string = environment.api_address + environment.api_version + 'servicos';
-  api_route_get: string = environment.api_address + environment.api_version + 'servicos' + '?where[estabelecimento_id]=';
+  api_route: string = environment.api_address + environment.api_version + 'funcionamento';
+  api_route_get: string = environment.api_address + environment.api_version + 'funcionamento' + '?where[estabelecimento_id]=';
 
   public options = {
     position: ['bottom', 'right'],
@@ -42,7 +42,7 @@ export class ServicosListComponent implements OnInit {
     private _notificationsService: NotificationsService,
     private router: Router,
     public localStorageService: LocalStorageService,
-    public servicoService: ServicoService,
+    public horarioFuncionamentoService: HorarioFuncionamentoService,
     private slimLoadingBarService: SlimLoadingBarService) { }
 
   ngOnInit() {
@@ -62,7 +62,7 @@ export class ServicosListComponent implements OnInit {
         .get(this.api_route_get + this.estabelecimento.id, this.requestOptions.merge(new RequestOptions()))
         .toPromise()
         .then(response => {
-          this.servicos = response.json().result;
+          this.horariosDeFuncionamento = response.json().result;
           resolve();
         })
         .catch((error: any) => {
@@ -108,13 +108,38 @@ export class ServicosListComponent implements OnInit {
     }).catch(swal.noop);
   }
 
+  add() {
+    this.http
+    .get(this.api_route_get + this.estabelecimento.id, this.requestOptions.merge(new RequestOptions()))
+    .toPromise()
+    .then(response => {
+      if (response.json().result.length === 0) {
+        this.router.navigate(['horario-funcionamento/new']);
+      } else {
+        swal({
+          title: 'Erro',
+          text: 'Não é possível cadastrar um novo horário de funcionamento. Edite o registro existente!',
+          type: 'error',
+          confirmButtonColor: '#d33',
+          confirmButtonText: 'Ok',
+        });
+      }
+    })
+    .catch((error: any) => {
+      if (error.status === 401) {
+        this.auth.refreshToken();
+        this.add();
+      }
+    });
+  }
+
   edit(id) {
     this.http
       .get(this.api_route + '/' + id, this.requestOptions.merge(new RequestOptions()))
       .toPromise()
       .then(response => {
-        this.servicoService.servico = response.json();
-        this.router.navigate(['servicos/edit']);
+        this.horarioFuncionamentoService.horarioFuncionamento = response.json();
+        this.router.navigate(['horario-funcionamento/edit']);
       })
       .catch((error: any) => {
         if (error.status === 401) {

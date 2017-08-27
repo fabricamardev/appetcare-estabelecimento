@@ -1,3 +1,13 @@
+import {
+    HorarioFuncionamentoListComponent,
+} from './horario-funcionamento/horario-funcionamento-list/horario-funcionamento-list.component';
+import {
+    HorarioFuncionamentoEditComponent,
+} from './horario-funcionamento/horario-funcionamento-edit/horario-funcionamento-edit.component';
+import {
+    HorarioFuncionamentoNewComponent,
+} from './horario-funcionamento/horario-funcionamento-new/horario-funcionamento-new.component';
+import { HorarioFuncionamentoService } from './horario-funcionamento/horario-funcionamento.service';
 import { AppComponent } from './app.component';
 import { routing } from './app.routing';
 import { AtendimentosAgendadosComponent } from './atendimentos-agendados/atendimentos-agendados.component';
@@ -28,7 +38,7 @@ import { GMapModule } from 'primeng/primeng';
 import { SimpleNotificationsModule } from 'angular2-notifications';
 import { Angular2SocialLoginModule } from 'angular2-social-login';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ImageCropperComponent } from 'ng2-img-cropper';
+import { SlimLoadingBarModule } from 'ng2-slim-loading-bar';
 
 let providers = {
   'google': {
@@ -53,8 +63,10 @@ let providers = {
     NavBarComponent,
     LocalizacaoComponent,
     AtendimentosAgendadosComponent,
-    ImageCropperComponent,
-    ServicosEditComponent
+    ServicosEditComponent,
+    HorarioFuncionamentoNewComponent,
+    HorarioFuncionamentoEditComponent,
+    HorarioFuncionamentoListComponent
   ],
   imports: [
     BrowserModule,
@@ -66,7 +78,8 @@ let providers = {
     CurrencyMaskModule,
     GMapModule,
     Angular2SocialLoginModule,
-    ScheduleModule
+    ScheduleModule,
+    SlimLoadingBarModule.forRoot()
   ],
   providers: [
     LocalStorageService,
@@ -75,7 +88,8 @@ let providers = {
     AuthGuardRouterService,
     DefaultRequestOptionsService,
     EventService,
-    ServicoService
+    ServicoService,
+    HorarioFuncionamentoService
   ],
   bootstrap: [AppComponent]
 })

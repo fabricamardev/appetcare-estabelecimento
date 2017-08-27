@@ -5,11 +5,11 @@
 
 export const environment = {
   production: false,
-  base_url: 'http://localhost:8000',
-  users_url: 'http://localhost:8000/api/users',
-  oauth_url: 'http://localhost:8000/oauth/token',
-  api_address: 'http://localhost:8000/api/',
+  base_url: 'http://192.168.1.113:8000',
+  users_url: 'http://192.168.1.113:8000/api/users',
+  oauth_url: 'http://192.168.1.113:8000/oauth/token',
+  api_address: 'http://192.168.1.113:8000/api/',
   api_version: 'v1/',
-  client_id: '1',
-  client_secret: 'GvZBT2iqMMC3e54VnzM5b6136pU6TK4gGFJVHqZl'
+  client_id: '2',
+  client_secret: 'Q3gieZUweoyog5R4YjgWp5USqX0v6ZdYGgtcLuUF'
 };

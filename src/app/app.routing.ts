@@ -6,6 +6,9 @@ import { RegisterComponent } from './register/register.component';
 import { ServicosListComponent } from './servicos/servicos-list/servicos-list.component';
 import { ServicosNewComponent } from './servicos/servicos-new/servicos-new.component';
 import { ServicosEditComponent } from './servicos/servicos-edit/servicos-edit.component';
+import { HorarioFuncionamentoListComponent } from './horario-funcionamento/horario-funcionamento-list/horario-funcionamento-list.component';
+import { HorarioFuncionamentoNewComponent } from './horario-funcionamento/horario-funcionamento-new/horario-funcionamento-new.component';
+import { HorarioFuncionamentoEditComponent } from './horario-funcionamento/horario-funcionamento-edit/horario-funcionamento-edit.component';
 import { ModuleWithProviders } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PerfilComponent } from './perfil/perfil.component';
@@ -38,6 +41,21 @@ const appRoutes: Routes = [
     {
         path: 'servicos/new',
         component: ServicosNewComponent,
+        canActivate: [AuthGuardRouterService]
+    },
+    {
+        path: 'horario-funcionamento/list',
+        component: HorarioFuncionamentoListComponent,
+        canActivate: [AuthGuardRouterService]
+    },
+    {
+        path: 'horario-funcionamento/edit',
+        component: HorarioFuncionamentoEditComponent,
+        canActivate: [AuthGuardRouterService]
+    },
+    {
+        path: 'horario-funcionamento/new',
+        component: HorarioFuncionamentoNewComponent,
         canActivate: [AuthGuardRouterService]
     },
     {
