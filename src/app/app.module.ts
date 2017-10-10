@@ -10,7 +10,6 @@ import {
 import { HorarioFuncionamentoService } from './horario-funcionamento/horario-funcionamento.service';
 import { AppComponent } from './app.component';
 import { routing } from './app.routing';
-import { AtendimentosAgendadosComponent } from './atendimentos-agendados/atendimentos-agendados.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { LocalizacaoComponent } from './localizacao/localizacao.component';
 import { LoginComponent } from './login/login.component';
@@ -40,7 +39,7 @@ import { Angular2SocialLoginModule } from 'angular2-social-login';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SlimLoadingBarModule } from 'ng2-slim-loading-bar';
 
-let providers = {
+/*let providers = {
   'google': {
     'clientId': '731078138311-3qrnda33cs8c0eb2msclhsk42c1vbvm2.apps.googleusercontent.com'
   },
@@ -48,7 +47,7 @@ let providers = {
     'clientId': '224071121444035',
     'apiVersion': 'v2.9'
   }
-};
+};*/
 
 @NgModule({
   declarations: [
@@ -62,7 +61,6 @@ let providers = {
     PerfilComponent,
     NavBarComponent,
     LocalizacaoComponent,
-    AtendimentosAgendadosComponent,
     ServicosEditComponent,
     HorarioFuncionamentoNewComponent,
     HorarioFuncionamentoEditComponent,
@@ -95,4 +93,4 @@ let providers = {
 })
 export class AppModule { }
 
-Angular2SocialLoginModule.loadProvidersScripts(providers);
+//Angular2SocialLoginModule.loadProvidersScripts(providers);

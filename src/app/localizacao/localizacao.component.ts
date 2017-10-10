@@ -122,7 +122,14 @@ export class LocalizacaoComponent implements OnInit {
 
   getLocation() {
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(this.showPosition);
+       this.http
+        .get('https://ipinfo.io/geo')
+        .toPromise()
+        .then(response => {
+          let loc = response.json().loc.split(',');
+          localStorage.setItem('latitude', loc[0]);
+          localStorage.setItem('longitude', loc[1]);
+      });
     } else {
       alert('Seu browser não suporta Geolocalização. Navegue pelo mapa para encontrar a localização desejada');
     }

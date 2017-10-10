@@ -16,8 +16,10 @@ export class RegisterComponent implements OnInit {
     user = {
         name: '',
         email: '',
+        estabelecimento_id: '',
         password: '',
     };
+
     estabelecimento: Estabelecimento = new Estabelecimento();
 
     api_route: string = environment.api_address + 'estabelecimentos';
@@ -26,8 +28,8 @@ export class RegisterComponent implements OnInit {
         private router: Router) { }
 
     register() {
-        this.storeUser();
         this.storeEstabelecimento();
+        this.storeUser();
         this.router.navigate(['/login']);
     }
 
